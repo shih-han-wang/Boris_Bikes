@@ -2,10 +2,16 @@
 class DockingStation
 
   def release_bike
-    Bike.new
-  end
+    fail 'No bikes available' unless @bike
+    @bike
+   end
+
+   #def available?
+    # raise "no bikes available"
+   #end
 
   def dock(bike)
+    bike = Bike.new
     @bike = bike
   end
 
