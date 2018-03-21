@@ -1,25 +1,30 @@
 
 class DockingStation
 
-  def release_bike
-    fail 'No bikes available' unless @bike
-    @bike
-   end
+attr_reader :collection
+attr_reader :bike
 
-   #def available?
-    # raise "no bikes available"
-   #end
+def initialize
+  @collection = []
+end
 
-  def dock(bike)
-    fail "docking station full" if @bike
-    @bike = bike
-  end
+def release_bike
+  fail 'No bikes available' unless @collection.length > 0
+  @bike
+  @collection.pop
+end
 
-  attr_reader :bike
+def dock(bike)
+  fail "docking station full" if collection.length == 20
+  @bike = bike
+  @collection.push(@bike)
+
+end
+
 end
 
 class Bike
-  attr_reader :dock_bike
+attr_reader :dock_bike
   def working?
     true
   end
